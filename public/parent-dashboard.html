@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar .logo h2 {
+            margin: 0;
+        }
+
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-container h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-item {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-item span {
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            margin-top: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .view-student-dashboard {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-student-dashboard:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h2>Parent Dashboard</h2>
+        </div>
+        <div class="nav-links">
+            <a href="logout.html" style="color: white; text-decoration: none;">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>Welcome, Parent</h1>
+
+        <div class="progress-container">
+            <h3>Student's Course Progress</h3>
+            <ul id="course-list" class="course-list">
+                <!-- Courses will be loaded here dynamically -->
+            </ul>
+        </div>
+
+        <a href="student-dashboard.html" class="view-student-dashboard">View Student Dashboard</a>
+    </div>
+
+    <script>
+        // Simulated data retrieved from Student Dashboard
+        const courses = [
+            { name: "Mathematics", progress: 80 },
+            { name: "Science", progress: 60 },
+            { name: "History", progress: 90 },
+        ];
+
+        // Function to render course list
+        const courseList = document.getElementById("course-list");
+
+        if (courseList) {
+            courses.forEach(course => {
+                const courseItem = document.createElement("li");
+                courseItem.classList.add("course-item");
+
+                courseItem.innerHTML = `
+                    <span>${course.name}</span>
+                    <div style="flex: 1; margin-left: 15px;">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: ${course.progress}%;"></div>
+                        </div>
+                        <small>${course.progress}% completed</small>
+                    </div>
+                `;
+
+                courseList.appendChild(courseItem);
+            });
+        } else {
+            console.error("Element with id 'course-list' not found.");
+        }
+    </script>
+</body>
+</html>

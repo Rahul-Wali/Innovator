@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student & Parent Login</title>
+    <style>
+        /* Basic styling for the login page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #3d8630;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link, .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .signup-link a, .forgot-password a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover, .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Student & Parent Login</h2>
+        
+        <form id="loginForm" action="javascript:void(0);">
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" placeholder="Enter your user ID" required>
+                <div id="userIdError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+
+            <button type="button" id="studentLoginBtn">Login as Student</button>
+            <button type="button" id="parentLoginBtn">Login as Parent</button>
+        </form>
+
+        <div class="forgot-password">
+            <p><a href="forgot-password.html">Forgot your password?</a></p>
+        </div>
+
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Get elements from the DOM
+        const userIdInput = document.getElementById("userId");
+        const passwordInput = document.getElementById("password");
+        const userIdError = document.getElementById("userIdError");
+        const passwordError = document.getElementById("passwordError");
+        const studentLoginBtn = document.getElementById("studentLoginBtn");
+        const parentLoginBtn = document.getElementById("parentLoginBtn");
+
+        // Function to validate the form
+        function validateForm() {
+            let isValid = true;
+
+            // Reset error messages
+            userIdError.textContent = '';
+            passwordError.textContent = '';
+
+            // Validate user ID
+            const userIdValue = userIdInput.value.trim();
+            if (!userIdValue) {
+                userIdError.textContent = "User ID is required.";
+                isValid = false;
+            }
+
+            // Validate password
+            const passwordValue = passwordInput.value.trim();
+            if (!passwordValue) {
+                passwordError.textContent = "Password is required.";
+                isValid = false;
+            } else if (passwordValue.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters long.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Function to handle login
+        function handleLogin(role) {
+            if (validateForm()) {
+                alert(`Login successful as ${role}!`);
+                // Redirect to respective dashboard
+                if (role === "Student") {
+                    window.location.href = "student-dashboard.html";
+                } else if (role === "Parent") {
+                    window.location.href = "parent-dashboard.html";
+                }
+            }
+        }
+
+        // Add event listeners to the buttons
+        studentLoginBtn.addEventListener("click", () => handleLogin("Student"));
+        parentLoginBtn.addEventListener("click", () => handleLogin("Parent"));
+
+    </script>
+</body>
+</html>

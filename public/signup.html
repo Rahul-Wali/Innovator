@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Basic styling for the sign-up page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .signup-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signup-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        
+        <form id="signupForm" action="javascript:void(0);">
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" placeholder="Enter your user ID" required>
+                <div id="userIdError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                <div id="confirmPasswordError" class="error-message"></div>
+            </div>
+
+            <button type="submit" id="signupBtn">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Get elements from the DOM
+        const form = document.getElementById("signupForm");
+        const userIdInput = document.getElementById("userId");
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+
+        const userIdError = document.getElementById("userIdError");
+        const passwordError = document.getElementById("passwordError");
+        const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+        // Function to validate the form
+        function validateForm() {
+            let isValid = true;
+
+            // Reset error messages
+            userIdError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+
+            // Validate user ID
+            const userIdValue = userIdInput.value.trim();
+            if (!userIdValue) {
+                userIdError.textContent = "User ID is required.";
+                isValid = false;
+            }
+
+            // Validate password
+            const passwordValue = passwordInput.value.trim();
+            if (!passwordValue) {
+                passwordError.textContent = "Password is required.";
+                isValid = false;
+            } else if (passwordValue.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters long.";
+                isValid = false;
+            }
+
+            // Validate confirm password
+            const confirmPasswordValue = confirmPasswordInput.value.trim();
+            if (!confirmPasswordValue) {
+                confirmPasswordError.textContent = "Please confirm your password.";
+                isValid = false;
+            } else if (confirmPasswordValue !== passwordValue) {
+                confirmPasswordError.textContent = "Passwords do not match.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Add event listener to the form
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Validate the form and check if valid
+            if (validateForm()) {
+                // Normally, you would send the form data to the server here for actual sign-up
+                // For this example, we will just alert a success message and redirect
+                
+                alert("Sign Up successful!");
+
+                // Redirect the user to the login page after successful sign-up
+                window.location.href = "login.html"; // Redirect to login page after sign-up
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar .logo h2 {
+    margin: 0;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Stats section */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Recent activities */
+.recent-activities {
+    margin-bottom: 30px;
+}
+
+.recent-activities ul {
+    list-style: none;
+}
+
+.recent-activities ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Next task section */
+.actions {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.actions p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h2>StudyApp</h2>
+        </div>
+        <div class="nav-links">
+            <a href="profile.html">Profile</a>
+            <a href="study-schedule.html">Study Schedule</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>Welcome, <span id="username">[User]</span></h1>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Study Hours</h3>
+                <p id="total-hours">50 hours</p>
+            </div>
+            <div class="stat-card">
+                <h3>Upcoming Exams</h3>
+                <p id="exam-count">3 exams</p>
+            </div>
+            <div class="stat-card">
+                <h3>Completed Assignments</h3>
+                <p id="completed-assignments">5 assignments</p>
+            </div>
+        </div>
+
+        <div class="recent-activities">
+            <h3>Recent Activities</h3>
+            <ul id="activity-list">
+                <li>Completed Math Assignment</li>
+                <li>Reviewed Physics Notes</li>
+                <li>Completed Chemistry Quiz</li>
+            </ul>
+        </div>
+
+        <div class="actions">
+            <h3>Your Next Task</h3>
+            <p id="next-task">Complete Biology Assignment</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the dashboard (you can replace it with real data from a backend)
+const username = "John Doe"; // Example username
+const totalHours = 50; // Example total study hours
+const examCount = 3; // Example upcoming exams
+const completedAssignments = 5; // Example completed assignments
+const recentActivities = [
+    "Completed Math Assignment",
+    "Reviewed Physics Notes",
+    "Completed Chemistry Quiz"
+];
+const nextTask = "Complete Biology Assignment"; // Example next task
+
+// Populate the dashboard with data
+document.getElementById("username").textContent = username;
+document.getElementById("total-hours").textContent = totalHours + " hours";
+document.getElementById("exam-count").textContent = examCount + " exams";
+document.getElementById("completed-assignments").textContent = completedAssignments + " assignments";
+document.getElementById("next-task").textContent = nextTask;
+
+// Display recent activities
+const activityList = document.getElementById("activity-list");
+recentActivities.forEach(activity => {
+    const listItem = document.createElement("li");
+    listItem.textContent = activity;
+    activityList.appendChild(listItem);
+});
+
+    </script>
+</body>
+</html>

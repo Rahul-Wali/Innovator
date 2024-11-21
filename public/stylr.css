@@ -1,0 +1,33 @@
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar .nav-links a {
+        margin: 5px 0;
+    }
+
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .profile-container {
+        width: 90%;
+    }
+
+    .schedule-container form input {
+        width: 100%;
+        margin-right: 0;
+    }
+}
